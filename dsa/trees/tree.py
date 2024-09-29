@@ -1,8 +1,8 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data, left: int = None, right: int = None):
         self.data = data
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
 
 def sum_values(root):
     if (root == None):

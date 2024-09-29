@@ -1,5 +1,5 @@
 class TreeNode:
-    def __init__(self, data, left: int = None, right: int = None) -> None:
+    def __init__(self, data, left: int = None, right: int = None):
         self.val = data
         self.left = left
         self.right = right
@@ -7,30 +7,31 @@ class TreeNode:
 class Solution:
     def recurse(self, node) -> int:
         val = node.val
-    
+        
         if node.left:
             val += self.recurse(node.left)
         if node.right:
             val += self.recurse(node.right)
         return val
-            
+    
     def solve(self, root = None) -> int:
         if not root:
             return 0
         return self.recurse(root)
-    
-# Sum the sample tree
+
+
 #  Our example tree looks like this:
-#      2
-#       \
-#        4
-#       /  \ 
-#      3    5
+#         3
+#       /   \
+#      6     2
+#     /     /
+#    9     10
+
 
 ob = Solution()
-root = TreeNode(2)
-root.right = TreeNode(4)
-root.right.left = TreeNode(3)
-root.right.right = TreeNode(5)
+root = TreeNode(3)
+root.right = TreeNode(2)
+root.left = TreeNode(6)
+root.right.left = TreeNode(10)
+root.left.left = TreeNode(9)
 print(ob.solve(root))
-        

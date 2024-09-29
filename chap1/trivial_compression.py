@@ -1,4 +1,5 @@
 from sys import getsizeof
+from typing import Optional
 
 class CompressedGene:
     def __init__(self, gene: str) -> None:
@@ -37,12 +38,18 @@ class CompressedGene:
 
     def __str__(self) -> str:  # string representation for pretty printing
         return self.decompress()
-    
+
+def calculate_saved_size(previous_size: float, present_size: float) -> float:
+    size_perct = ((previous_size - present_size) / previous_size) * 100
+    return round(size_perct, 2)
 
 if __name__ == "__main__":
     original: str = "TAGGGATTAACCGTTATATATATATAGCCATGGATCGATTATATAGGGATTAACCGTTATATATATATAGCCATGGATCGATTATA" * 100
     print("original is {} bytes".format(getsizeof(original)))
     compressed: CompressedGene = CompressedGene(original)  # compress
     print("compressed is {} bytes".format(getsizeof(compressed.bit_string)))
+    print("Saved {}% of the memory cost of storing the gene through this compression scheme.".format(calculate_saved_size(getsizeof(original), getsizeof(compressed.bit_string))))
     print(compressed)  # decompress
     print("original and decompressed are the same: {}".format(original == compressed.decompress()))
+    # decomprised = compressed.decompress()
+    # print(decomprised)
