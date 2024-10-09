@@ -14,5 +14,5 @@ def fib3(n: int) -> int:
         memo[n] = fib3(n - 1) + fib3(n - 2)   # memoization
     return memo[n]
 
-print(fib3(50))
+# print(fib3(50))
 
